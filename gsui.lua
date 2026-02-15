@@ -383,10 +383,7 @@ local function handle_mouse_up(mx, my)
                 -- Dropped on a bag in organizer
                 local dest = drop.bag_name
                 local item = drop.item
-                if not bag_org.is_bag_accessible(dest) then
-                    ui.set_status('Cannot access ' .. dest .. ' here')
-                    windower.add_to_chat(207, 'GSUI: Cannot access ' .. dest .. ' outside Mog House.')
-                elseif ui.get_org_view() == 'scattered' and _org_all_bag_items then
+                if ui.get_org_view() == 'scattered' and _org_all_bag_items then
                     -- Consolidate: move all copies from every bag into destination
                     local move_count = 0
                     for bag_name, items in pairs(_org_all_bag_items) do
@@ -491,18 +488,29 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
         refresh_timer = os.clock()
     elseif id == 0x05F then -- Music Change: BGM Type 6 = mog house
         local bgm_type = original:byte(5) + original:byte(6) * 256
-        local was_in = bag_org.is_in_mog_house()
-        bag_org.set_mog_house(bgm_type == 6)
-        ui.set_mog_house(bgm_type == 6)
-        -- Refresh organizer if mog house state changed
-        if was_in ~= (bgm_type == 6) and ui.get_mode() == 'organizer' then
-            coroutine.schedule(function()
-                if initialized then refresh_organizer() end
-            end, 0.5)
+        -- Only SET mog house on type 6; never UNSET from music packets
+        -- (unsetting is handled by zoning packet 0x00B)
+        if bgm_type == 6 and not bag_org.is_in_mog_house() then
+            bag_org.set_mog_house(true)
+            ui.set_mog_house(true)
+            if ui.get_mode() == 'organizer' then
+                coroutine.schedule(function()
+                    if initialized then refresh_organizer() end
+                end, 0.5)
+            end
         end
     elseif id == 0x00A then -- Zone finish
         coroutine.schedule(function()
             if initialized then
+                -- Zone-based mog house detection as reliable fallback
+                local info = windower.ffxi.get_info()
+                if info then
+                    local zone = res.zones[info.zone]
+                    if zone and zone.name and zone.name:find('Residential') then
+                        bag_org.set_mog_house(true)
+                        ui.set_mog_house(true)
+                    end
+                end
                 ui.build()
                 refresh_data()
                 if ui.get_mode() == 'organizer' then

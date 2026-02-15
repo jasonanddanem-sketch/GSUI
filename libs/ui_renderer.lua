@@ -1518,12 +1518,6 @@ function ui.refresh_org_bags()
                 entry.bg:color(40, 40, 60)
                 entry.text:color(120, 120, 160)
                 entry.count_text:text('')
-            elseif entry.mog and not state.in_mog_house then
-                entry.active = false
-                entry.text:color(80, 80, 100)
-                entry.count_text:color(80, 80, 100)
-                entry.bg:alpha(100)
-                entry.bg:color(25, 25, 60)
             elseif bag_def.key == state.org_selected_bag then
                 entry.active = true
                 entry.bg:color(50, 100, 200)

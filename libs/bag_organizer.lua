@@ -25,7 +25,7 @@ end
 
 function organizer.is_bag_accessible(bag_name)
     if anywhere_bags[bag_name] then return true end
-    return mog_only_bags[bag_name] and organizer.is_in_mog_house() or false
+    return mog_only_bags[bag_name] or false
 end
 
 function organizer.is_mog_bag(bag_name)
