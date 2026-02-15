@@ -383,7 +383,10 @@ local function handle_mouse_up(mx, my)
                 -- Dropped on a bag in organizer
                 local dest = drop.bag_name
                 local item = drop.item
-                if ui.get_org_view() == 'scattered' and _org_all_bag_items then
+                if not bag_org.is_in_mog_house() and (bag_org.is_mog_bag(dest) or bag_org.is_mog_bag(item.bag_name)) then
+                    ui.set_status('Must be in Mog House')
+                    windower.add_to_chat(207, 'GSUI: Unable to move items to/from Mog House storage unless in your Mog House.')
+                elseif ui.get_org_view() == 'scattered' and _org_all_bag_items then
                     -- Consolidate: move all copies from every bag into destination
                     local move_count = 0
                     for bag_name, items in pairs(_org_all_bag_items) do
