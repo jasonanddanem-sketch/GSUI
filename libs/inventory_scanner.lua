@@ -17,15 +17,21 @@ local bag_ids = {
     wardrobe2 = 10,
     wardrobe3 = 11,
     wardrobe4 = 12,
+    wardrobe5 = 13,
+    wardrobe6 = 14,
+    wardrobe7 = 15,
+    wardrobe8 = 16,
 }
 
 local bag_names_ordered = {
     'inventory', 'wardrobe', 'wardrobe2', 'wardrobe3', 'wardrobe4',
+    'wardrobe5', 'wardrobe6', 'wardrobe7', 'wardrobe8',
     'satchel', 'sack', 'case',
 }
 
 local all_bag_names_ordered = {
     'inventory', 'wardrobe', 'wardrobe2', 'wardrobe3', 'wardrobe4',
+    'wardrobe5', 'wardrobe6', 'wardrobe7', 'wardrobe8',
     'satchel', 'sack', 'case',
     'safe', 'safe2', 'storage', 'locker',
 }

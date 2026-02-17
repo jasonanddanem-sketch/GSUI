@@ -50,6 +50,10 @@ local ORG_BAG_LIST = {
     {key='wardrobe2', label='Wardrobe 2'},
     {key='wardrobe3', label='Wardrobe 3'},
     {key='wardrobe4', label='Wardrobe 4'},
+    {key='wardrobe5', label='Wardrobe 5'},
+    {key='wardrobe6', label='Wardrobe 6'},
+    {key='wardrobe7', label='Wardrobe 7'},
+    {key='wardrobe8', label='Wardrobe 8'},
     {key='satchel', label='Satchel'},
     {key='sack', label='Sack'},
     {key='case', label='Case'},
@@ -60,7 +64,7 @@ local ORG_BAG_LIST = {
     {key='locker', label='Locker', mog=true},
 }
 local ORG_ENTRY_H = 32
-local ORG_VISIBLE = 8
+local ORG_VISIBLE = 12
 
 -- State
 local elements = {

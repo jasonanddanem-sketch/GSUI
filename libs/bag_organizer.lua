@@ -6,7 +6,8 @@ local organizer = {}
 
 local anywhere_bags = {
     inventory=true, wardrobe=true, wardrobe2=true, wardrobe3=true,
-    wardrobe4=true, satchel=true, sack=true, case=true,
+    wardrobe4=true, wardrobe5=true, wardrobe6=true, wardrobe7=true,
+    wardrobe8=true, satchel=true, sack=true, case=true,
 }
 local mog_only_bags = {safe=true, safe2=true, storage=true, locker=true}
 
