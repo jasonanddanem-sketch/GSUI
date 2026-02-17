@@ -64,7 +64,7 @@ local ORG_BAG_LIST = {
     {key='locker', label='Locker', mog=true},
 }
 local ORG_ENTRY_H = 32
-local ORG_VISIBLE = 12
+local ORG_VISIBLE = 8
 
 -- State
 local elements = {
